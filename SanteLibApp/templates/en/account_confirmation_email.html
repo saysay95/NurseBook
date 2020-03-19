@@ -1,0 +1,10 @@
+
+    Hello {{ user.username }},
+
+    Thank you for registering at SantéLib.
+    Your account is created and must be activated before you can use it.
+    To activate the account click on the following link or copy-paste it in your browser:
+    http://{{ domain }}{% url 'activate' uid=uid token=token %}
+
+    Thank you,
+    Strika

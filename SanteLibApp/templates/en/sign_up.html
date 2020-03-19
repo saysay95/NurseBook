@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+    <section class="clearfix signUpSection">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-xs-12">
+				<div class="signUpFormArea">
+					<div class="priceTableTitle">
+						<h2>Account Registration</h2>
+						<p>Please fill out the fields below to create your account. We will send your account information to the email address you enter. Your email address and information will NOT be sold or shared with any 3rd party. If you already have an account, please, <a href="{% url "sign_in" %}">click here</a>.</p>
+					</div>
+					<div class="signUpForm">
+						<form method="post" action="{% url "sign_up" %}">
+                            {% csrf_token %}
+                            <div class="formSection">
+
+								<h3>Contact Information</h3>
+								<div class="row">
+                                    {% for field in form %}
+                                        {% if field.name in 'first_name,last_name,email' %}
+                                            {% if field.name in 'first_name,last_name' %}
+                                                <div class="form-group col-sm-6 col-xs-12">
+                                            {% else %}
+                                                <div class="form-group col-sm-6 col-xs-12">
+                                            {% endif %}
+                                                    <label for={{ field.name }} class="control-label">{{ field.label }}</label>
+                                                    {{ field }}
+                                                </div>
+                                        {% endif %}
+                                    {% endfor %}
+								</div>
+							</div>
+							<div class="formSection">
+								<h3>Account Information</h3>
+								<div class="row">
+                                    {% for field in form %}
+                                        {% if field.name in 'username,password1,password2' %}
+                                            {% if field.name == 'username' %}
+                                                <div class="form-group col-xs-12">
+                                                    <label for={{ field.name }} class="control-label">{{ field.label }}</label>
+                                                    {{ field }}
+                                                </div>
+                                            {% else %}
+                                                <div class="form-group col-sm-6 col-xs-12">
+                                                    <label for={{ field.name }} class="control-label">{{ field.label }}</label>
+                                                    {{ field }}
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+								</div>
+							</div>
+{#							<div class="formSection">#}
+{#								<h3>Security Control</h3>#}
+{#								<div class="row">#}
+{#									<div class="form-group col-xs-12">#}
+{#										<label for="usernames" class="control-label">Confirm that you are human*</label>#}
+{#										<img src="img/business/recaptcha.jpg" alt="Image captcha" class="img-responsive img-rtl">#}
+{#									</div>#}
+{#									<div class="form-group col-xs-12">#}
+{#										<div class="checkbox">#}
+{#											<label>#}
+{#												<input type="checkbox">#}
+{#												I agree to the <a href="terms-of-services.html">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>. Your business listing is fully backed by our 100% money back guarantee.#}
+{#											</label>#}
+{#										</div>#}
+{#									</div>#}
+{##}
+{#								</div>#}
+{#							</div>#}
+                            <div class="form-group col-xs-12 mb0">
+                                <button type="submit" class="btn btn-primary">Create Account</button>
+                            </div>
+
+                                </div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

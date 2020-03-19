@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/static/js/behaviour.js"></script>
+   <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+
+       {% block header %}
+
+       {% endblock %}
+
+</head>
+<body>
+<header>SantéLib</header>
+    <nav>
+       {% block nav %}
+       {% endblock %}
+{% if user.is_authenticated %}
+    <h2><a href="{% url "sign_out" %}">Sign out</a></h2>
+    {% endif %}
+   </nav>
+   <section id="content">
+       {% block content %}
+
+       {% endblock %}
+   </section>
+<footer style="background-image: url(../static/img/background/bg-footer.jpg);">
+
+    <div class="clearfix footerInfo">
+
+    </div>
+
+    <div class="clearfix copyRight">
+        &copy; SantéLib
+    </div>
+</footer>
+</body>
+</html>
